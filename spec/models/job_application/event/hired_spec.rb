@@ -19,7 +19,7 @@ RSpec.describe JobApplication::Event::Hired, type: :model do
     context "when another event for job application exists" do
       let(:job_application) { create(:job_application) }
       let(:hire_date) { Date.current }
-      let!(:other_job_application_event) { create(:job_application_event_note, job_application: job_application) }
+      let!(:other_job_application_event) { create(:job_application_event_interview, job_application: job_application) }
 
       it "creates a job_application event successfully" do
         expect { described_class.create(job_application: job_application, hire_date: hire_date) }.to \
