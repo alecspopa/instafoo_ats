@@ -5,6 +5,7 @@
 - I used Docker Postgres DB because this is the most common database used in production.
 - The project can be run locally not in a docker container because it makes debugging easier, but it is easy to run it in a container (Rails comes with a default Dockerfile).
 - I switched testing to RSpec and FactoryBot because it is more commonly used than MiniTest.
+- I named "Application" "JobApplication" so that the class name does not conflict with the Rails Application class.
 
 ## Run the project
 
