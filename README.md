@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Run the project
 
-Things you may want to cover:
+Have Docker installed and run the following command:
 
-* Ruby version
+```bash
+docker compose up -d
+```
 
-* System dependencies
+The project is configured to connect to the docker database and should work when running locally.
 
-* Configuration
+```bash
+rails db:create
+rails db:migrate
+rails db:seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails server
+```

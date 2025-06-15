@@ -1,0 +1,17 @@
+services:
+
+  postgres:
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    command: >
+      -c max_wal_size=512MB
+
+volumes:
+  postgres:
+    driver: local
