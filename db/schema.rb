@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_15_173610) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_15_183053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_15_173610) do
     t.string "candidate_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_id", null: false
+    t.index ["job_id"], name: "index_job_applications_on_job_id"
   end
 
   create_table "job_events", force: :cascade do |t|
@@ -39,4 +41,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_15_173610) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "job_applications", "jobs"
 end
