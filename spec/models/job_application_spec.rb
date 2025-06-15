@@ -1,5 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe JobApplication, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "creation" do
+    context "with valid attributes" do
+      let(:candidate_name) { "Jane Doe" }
+
+      it "creates a job application successfully" do
+        expect { described_class.create(candidate_name: candidate_name) }.to change { described_class.count }.by(1)
+
+        last_record = described_class.last
+        expect(last_record).to be_present
+        expect(last_record.candidate_name).to eq(candidate_name)
+      end
+    end
+
+    context "with invalid attributes" do
+      context "when candidate_name is missing" do
+        let(:candidate_name) { nil }
+
+        it "does not create a job application" do
+          expect { described_class.create(candidate_name: candidate_name) }.not_to change { described_class.count }
+        end
+      end
+    end
+  end
 end

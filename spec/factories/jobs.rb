@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :job do
-    title { "MyString" }
-    description { "MyString" }
+    title { "Developer" }
+    description { "Great developer job" }
   end
 end
