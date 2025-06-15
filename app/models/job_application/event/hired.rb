@@ -1,4 +1,4 @@
-class JobApplication::Event::Hired < ApplicationRecord
+class JobApplication::Event::Hired < JobApplication::Event
   store_accessor :data, :hire_date
 
   validates :hire_date, presence: true

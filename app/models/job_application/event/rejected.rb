@@ -1,3 +1,3 @@
-class JobApplication::Event::Rejected < ApplicationRecord
+class JobApplication::Event::Rejected < JobApplication::Event
 
 end

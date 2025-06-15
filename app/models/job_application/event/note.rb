@@ -1,4 +1,4 @@
-class JobApplication::Event::Note < ApplicationRecord
+class JobApplication::Event::Note < JobApplication::Event
   store_accessor :data, :content
 
   validates :content, presence: true
