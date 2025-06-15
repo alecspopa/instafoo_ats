@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_15_184057) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_15_191709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "job_application_event_mappings", force: :cascade do |t|
+    t.bigint "job_application_id", null: false
+    t.bigint "job_application_event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_application_event_id"], name: "idx_on_job_application_event_id_a557df2885"
+    t.index ["job_application_id"], name: "index_job_application_event_mappings_on_job_application_id", unique: true
+  end
 
   create_table "job_application_events", force: :cascade do |t|
     t.string "type"
     t.jsonb "data", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_application_id", null: false
+    t.index ["job_application_id"], name: "index_job_application_events_on_job_application_id"
   end
 
   create_table "job_applications", force: :cascade do |t|
@@ -53,6 +64,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_15_184057) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "job_application_event_mappings", "job_application_events"
+  add_foreign_key "job_application_event_mappings", "job_applications"
+  add_foreign_key "job_application_events", "job_applications"
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "job_event_mappings", "job_events"
   add_foreign_key "job_event_mappings", "jobs"
