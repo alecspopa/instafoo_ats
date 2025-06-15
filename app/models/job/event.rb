@@ -1,5 +1,6 @@
 class Job::Event < ApplicationRecord
-  belongs_to :job, inverse_of: :events
+  belongs_to :job, inverse_of: :job_events
+  has_one :job_event_mapping, class_name: "Job::EventMapping", foreign_key: "job_event_id"
 
   validates :type, presence: true
 

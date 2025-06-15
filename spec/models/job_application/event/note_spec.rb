@@ -30,11 +30,11 @@ RSpec.describe JobApplication::Event::Note, type: :model do
 
         last_event_mapping = JobApplication::EventMapping.last
         expect(last_event_mapping.job_application_id).to eq(job_application.id)
-        expect(last_event_mapping.job_application_event_id).to eq(last_record.id)
+        expect(last_event_mapping.job_application_event_id).to eq(other_job_application_event.id)
       end
 
-      it "updates the existing job_application event mapping" do
-        expect { described_class.create(job_application: job_application, content: content) }.to \
+      it "does not update the existing job_application event mapping" do
+        expect { described_class.create(job_application: job_application, content: content) }.not_to \
           change { JobApplication::EventMapping.last.job_application_event_id }.from(other_job_application_event.id)
       end
 

@@ -1,5 +1,6 @@
 class JobApplication::Event < ApplicationRecord
-  belongs_to :job_application, inverse_of: :events
+  belongs_to :job_application, inverse_of: :job_application_events
+  has_one :job_application_event_mapping, class_name: "JobApplication::EventMapping", foreign_key: "job_application_event_id"
 
   validates :type, presence: true
 
@@ -14,6 +15,9 @@ class JobApplication::Event < ApplicationRecord
   private
 
   def upsert_mapping
+    # If the event is a Note, we want to keep the last event whatever was before it.
+    return if type == "JobApplication::Event::Note"
+
     JobApplication::EventMapping
       .upsert(
         {
