@@ -28,7 +28,7 @@ RSpec.describe "JobApplications", type: :request do
           interview_date: nil,
           job: {
             id: job_application_hired.job.id,
-            title: job_application_hired.job.title,
+            title: job_application_hired.job.title
           }
         },
         {
@@ -39,7 +39,7 @@ RSpec.describe "JobApplications", type: :request do
           interview_date: job_application_interview.interview_date,
           job: {
             id: job_application_interview.job.id,
-            title: job_application_interview.job.title,
+            title: job_application_interview.job.title
           }
         }
       )
