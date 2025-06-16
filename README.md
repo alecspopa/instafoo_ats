@@ -25,3 +25,15 @@ rails db:seed
 
 rails server
 ```
+
+The following URLs are available:
+http://127.0.0.1:3000/jobs.json
+http://127.0.0.1:3000/job_applications.json
+
+## Run tests
+
+I included `Bullet` gem to prove that I don't have n+1 issues in the code.
+
+```bash
+rspec
+```
